@@ -35,7 +35,7 @@ ShootGen1Tukey <- TukeyHSD(ShootGen1ANOVA)
 print(ShootGen1Tukey)
 #add letters for significance, same lettered groups are alike
 ShootSigDiffs1 <-  multcompLetters4(ShootGen1ANOVA, ShootGen1Tukey)
-print(ShootSigDiffs)
+print(ShootSigDiffs1)
 ShootSigDiffsTable1 <- group_by(Gen1,  condition ) %>% 
   summarize( mean = mean(na.rm = TRUE, dry.shoot.weight_g)) %>% 
   arrange(desc(mean))
@@ -71,7 +71,7 @@ ShootGen1Biomass <- ggplot(data = Gen1, show.legend= TRUE) +
   labs (title = "Generation 1 Shoot Biomass", 
         y= "Dry Shoot Weight(g)",
         x = "Experimental Condition\n N=5 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=ShootSigDiffsTable1, aes(condition, 4, label = ShootSigDiffs1$Letters))
 ShootGen1Biomass
 ggsave("ShootGen1Biomass.png", width = 5, height = 5, dpi = 1000)
@@ -84,7 +84,7 @@ ShootGen2Biomass <- ggplot(data = Gen2, show.legend= TRUE) +
   labs (title = "Generation 2 Shoot Biomass", 
         y= "Dry Shoot Weight(g)",
         x = "Compounded Experimental Condition\n N=12 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=ShootSigDiffsTable2, aes(combocondition, 1, label = ShootSigDiffs2$Letters))
 ShootGen2Biomass
 ggsave("ShootGen2Biomass.png", width = 5, height = 5, dpi = 1000)
@@ -136,7 +136,7 @@ RootGen1Biomass <- ggplot(data = Gen1, show.legend= TRUE) +
   labs (title = "Generation 1 Root Biomass", 
         y= "Dry Root Weight(g)",
         x = "Experimental Condition\n N=5 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=RootSigDiffsTable1, aes(condition, 2, label = RootSigDiffs1$Letters))
 RootGen1Biomass
 ggsave("RootGen1Biomass.png", width = 5, height = 5, dpi = 1000)
@@ -149,7 +149,7 @@ scale_color_manual(values = ConditionColors,
   labs (title = "Generation 2 Root Biomass", 
         y= "Dry Root Weight(g)",
         x = "Compounded Experimental Condition\n N=12 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=RootSigDiffsTable2, aes(combocondition, 0.5, label = RootSigDiffs2$Letters))
 RootGen2Biomass
 ggsave("RootGen2Biomass.png", width = 5, height = 5, dpi = 1000)
@@ -200,7 +200,7 @@ PodNumGen1 <- ggplot(data = Gen1, show.legend= TRUE) +
   labs (title = "Generation 1 Pod Count", 
         y= "Pod Count",
         x = "Experimental Condition\n N=5 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=PodSigDiffsTable1, aes(condition, 2, label = PodSigDiffs1$Letters))
 PodNumGen1
 ggsave("PodNumGen1.png", width = 5, height = 5, dpi = 1000)
@@ -213,7 +213,7 @@ PodNumGen2 <- ggplot(data = Gen2, show.legend= TRUE) +
   labs (title = "Generation 2 Pod Count", 
         y= "Pod Count",
         x = "Compounded Experimental Condition\n N=12 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=PodSigDiffsTable2, aes(combocondition, 0.5, label = PodSigDiffs2$Letters))
 PodNumGen2
 ggsave("PodNumGen2.png", width = 5, height = 5, dpi = 1000)
@@ -264,9 +264,9 @@ SeedNumGen1 <- ggplot(data = Gen1, show.legend= TRUE) +
   labs (title = "Generation 1 Seed Count", 
         y= "Seed Count",
         x = "Experimental Condition\n N=5 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
-  geom_text(data=SeedSigDiffsTable1, aes(condition, 2, label = SeedSigDiffs1$Letters))
-PodNumGen1
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
+  geom_text(data=SeedSigDiffsTable1, aes(condition, 25, label = SeedSigDiffs1$Letters))
+SeedNumGen1
 ggsave("SeedNumGen1.png", width = 5, height = 5, dpi = 1000)
 
 SeedNumGen2 <- ggplot(data = Gen2, show.legend= TRUE) + 
@@ -277,7 +277,7 @@ SeedNumGen2 <- ggplot(data = Gen2, show.legend= TRUE) +
   labs (title = "Generation 2 Seed Count", 
         y= "Seed Count",
         x = "Compounded Experimental Condition\n N=12 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=SeedSigDiffsTable2, aes(combocondition, 0.5, label = SeedSigDiffs2$Letters))
 SeedNumGen2
 ggsave("SeedNumGen2.png", width = 5, height = 5, dpi = 1000)
@@ -326,9 +326,9 @@ StoConGen1 <- ggplot(data = Gen1, show.legend= TRUE) +
   scale_color_manual(values = ConditionColors,
                      name = "Condition") +
   labs (title = "Generation 1 Stomatal Conductance ", 
-        y= "Stomatal Conductance",
+        y= "Stomatal Conductance (mol/m^2s)",
         x = "Experimental Condition\n N=5 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=StoConSigDiffsTable1, aes(condition, 0, label = StoConSigDiffs1$Letters))
 StoConGen1
 ggsave("StoConGen1.png", width = 5, height = 5, dpi = 1000)
@@ -339,9 +339,9 @@ StoConGen2 <- ggplot(data = Gen2, show.legend= TRUE) +
                      name = "Parent Plant Condition\nDuring Generation 1" ) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
   labs (title = "Generation 2 Stomatal Conductance", 
-        y= "Stomatal Conductance",
+        y= "Stomatal Conductance (mol/m^2s)",
         x = "Compounded Experimental Condition\n N=12 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=StoConSigDiffsTable2, aes(combocondition, 0, label = StoConSigDiffs2$Letters))
 StoConGen2
 ggsave("StoConGen2.png", width = 5, height = 5, dpi = 1000)
@@ -391,9 +391,9 @@ PhotoGen1 <- ggplot(data = Gen1, show.legend= TRUE) +
   scale_color_manual(values = ConditionColors,
                      name = "Condition") +
   labs (title = "Generation 1 Photosynthetic Rate ", 
-        y= "Photosynthetic Rate",
+        y= "Photosynthetic Rate (µmol/ m^2s)",
         x = "Experimental Condition\n N=5 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=PhotoSigDiffsTable1, aes(condition, 0, label = PhotoSigDiffs1$Letters))
 PhotoGen1
 ggsave("PhotoGen1.png", width = 5, height = 5, dpi = 1000)
@@ -404,9 +404,9 @@ PhotoGen2 <- ggplot(data = Gen2, show.legend= TRUE) +
                      name = "Parent Plant Condition\nDuring Generation 1" ) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
   labs (title = "Generation 2 Photosynthetic Rate", 
-        y= "Photosynthetic Rate",
+        y= "Photosynthetic Rate (µmol/ m^2s)",
         x = "Compounded Experimental Condition\n N=12 per group",
-        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Exact Test") + 
+        subtitle = "Letters indicate significant differences at p < 0.01\n1-way ANOVA, Tukey's Test") + 
   geom_text(data=StoConSigDiffsTable2, aes(combocondition, 0, label = StoConSigDiffs2$Letters))
 PhotoGen2
 ggsave("PhotoGen2.png", width = 5, height = 5, dpi = 1000)
